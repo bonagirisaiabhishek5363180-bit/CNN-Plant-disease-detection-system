@@ -5,3 +5,4 @@ python-multipart
 pillow
 numpy
 opencv-python
+jinja2
