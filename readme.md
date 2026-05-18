@@ -65,25 +65,25 @@ The project uses:
 
 # 📈 Accuracy Graph
 
-<img src="accuracy_plot.png" width="700">
+![Accuracy Graph](./images/accuracy_plot.png)
 
 ---
 
 # 📉 Loss Graph
 
-<img src="loss_plot.png" width="700">
+![Loss Graph](./images/loss_plot.png)
 
 ---
 
 # 🖼️ Sample Input Image
 
-<img src="sample_input.png" width="500">
+![Sample Input Image](./images/sample_input.png)
 
 ---
 
 # ✅ Sample Prediction Output
 
-<img src="sample_output.png" width="700">
+![Sample Prediction Output](./images/sample_output.png)
 
 ---
 
