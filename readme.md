@@ -2,7 +2,7 @@
 
 ## 🌐 Live Demo
 
-[https://cnn-plant-disease-detection-system-8.onrender.com/](https:cnn-plant-disease-detection-system)
+[Live Demo](https://cnn-plant-disease-detection-system-8.onrender.com/)
 
 An end-to-end Deep Learning web application that detects plant diseases from leaf images using Transfer Learning with MobileNetV2.
 
