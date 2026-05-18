@@ -1,13 +1,15 @@
 import json
+import os
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from backend.recomendations import disease_info
 import numpy as np
-import os
-model = load_model("finetuned_plant_disease_detection_model.keras",compile=False)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = load_model(os.path.join(BASE_DIR, "finetuned_plant_disease_detection_model.keras"), compile=False)
 print("Model loaded successfully")
-with open("class_names.json","r") as f:
-    class_names=json.load(f)
+with open(os.path.join(BASE_DIR, "class_names.json"), "r") as f:
+    class_names = json.load(f)
 print("Class names loaded successfully")
 def predict_disease(img_path):
     input_image=image.load_img(img_path,target_size=(224,224))

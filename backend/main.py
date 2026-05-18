@@ -1,60 +1,66 @@
+
 import json
-from fastapi import FastAPI, File, UploadFile, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from tensorflow.keras.models import load_model
-from PIL import Image
 import numpy as np
+from PIL import Image
+
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
+from tensorflow.keras.models import load_model
+
 from .recomendations import disease_info
 
-with open("backend/class_names.json", "rb") as f:
+app = FastAPI()
+
+model = load_model("backend/finetuned_plant_disease_detection_model.keras")
+
+with open("backend/class_names.json", "r") as f:
     class_names = json.load(f)
 
-app = FastAPI()
-model = load_model("backend/finetuned_plant_disease_detection_model.keras")
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 
 def predict_disease(image):
-    img = image.resize((224, 224))
-    img = np.array(img)
-    img = img / 255.0
-    img = np.expand_dims(img, axis=0)
-    prediction = model.predict(img)
+
+    image = image.resize((224, 224))
+
+    image = np.array(image)
+
+    image = image / 255.0
+
+    image = np.expand_dims(image, axis=0)
+
+    prediction = model.predict(image)
+
     argmax = np.argmax(prediction)
+
     confidence = np.max(prediction) * 100
+
     predicted_class = class_names[argmax]
-    if predicted_class in disease_info:
-        info = disease_info[predicted_class]
-    else:
-        info = None
+
+    info = disease_info[predicted_class]
+
     return predicted_class, confidence, info
 
 
+@app.get("/")
+def home():
 
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
-
-
-@app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse(
-        request,
-        "index.html",
-        {"request": request}
-    )
+    return FileResponse("frontend/index.html")
 
 
 @app.post("/")
 async def predict(file: UploadFile = File(...)):
+
     image = Image.open(file.file)
+
     predicted_class, confidence, info = predict_disease(image)
-    return JSONResponse(
-        {
-            "disease": predicted_class,
-            "confidence": round(float(confidence), 2),
-            "cause": info["cause"] if info else None,
-            "prevention": info["prevention"] if info else None,
-            "treatment": info["treatment"] if info else None,
-        }
-    )
+
+    return {
+        "disease": predicted_class,
+        "confidence": round(float(confidence), 2),
+        "cause": info["cause"],
+        "treatment": info["treatment"],
+        "prevention": info["prevention"]
+    }
