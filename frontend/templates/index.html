@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Plant Disease Detection System</h1>
+
+        <div class="upload-box">
+            <input type="file" id="imageInput" accept="image/*">
+            <button id="predictBtn">Predict Disease</button>
+        </div>
+
+        <div class="preview-section">
+            <img id="previewImage" src="" alt="Preview Image">
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <h2>Prediction Result</h2>
+
+            <p><strong>Disease:</strong> <span id="disease"></span></p>
+            <p><strong>Confidence:</strong> <span id="confidence"></span></p>
+            <p><strong>Cause:</strong> <span id="cause"></span></p>
+            <p><strong>Treatment:</strong> <span id="treatment"></span></p>
+            <p><strong>Prevention:</strong> <span id="prevention"></span></p>
+        </div>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
