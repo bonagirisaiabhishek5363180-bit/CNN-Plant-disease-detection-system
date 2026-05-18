@@ -6,13 +6,13 @@ from fastapi.templating import Jinja2Templates
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
-from recomendations import disease_info
+from .recomendations import disease_info
 
-with open("class_names.json", "rb") as f:
+with open("backend/class_names.json", "rb") as f:
     class_names = json.load(f)
 
 app = FastAPI()
-model = load_model("finetuned_plant_disease_detection_model.keras")
+model = load_model("backend/finetuned_plant_disease_detection_model.keras")
 
 
 def predict_disease(image):
@@ -29,6 +29,7 @@ def predict_disease(image):
     else:
         info = None
     return predicted_class, confidence, info
+
 
 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
