@@ -7,11 +7,19 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
 from .recomendations import disease_info
+from fastapi.middleware.cors import CORSMiddleware
 
 with open("backend/class_names.json", "rb") as f:
     class_names = json.load(f)
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 print("Loading model...")
 model = load_model("backend/finetuned_plant_disease_detection_model.keras")
 print("Model loaded successfully")

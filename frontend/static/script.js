@@ -26,7 +26,7 @@ predictBtn.addEventListener("click", async function () {
 
     try {
 
-        const response = await fetch("https://cnn-plant-disease-detection-system-2.onrender.com/", {
+        const response = await fetch("https://cnn-plant-disease-detection-system-7.onrender.com/", {
             method: "POST",
             body: formData
         });
