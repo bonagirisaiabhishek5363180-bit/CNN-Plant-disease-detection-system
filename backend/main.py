@@ -12,8 +12,9 @@ with open("backend/class_names.json", "rb") as f:
     class_names = json.load(f)
 
 app = FastAPI()
+print("Loading model...")
 model = load_model("backend/finetuned_plant_disease_detection_model.keras")
-
+print("Model loaded successfully")
 
 def predict_disease(image):
     img = image.resize((224, 224))
