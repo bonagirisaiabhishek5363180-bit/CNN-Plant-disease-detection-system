@@ -1,1 +1,7 @@
-tensorflow opencv-python matplotlib numpy pandas scikit-learn  pillow fastapi uvicorn python-multipart
+tensorflow
+fastapi
+uvicorn
+python-multipart
+pillow
+numpy
+opencv-python
