@@ -145,23 +145,49 @@ The project uses:
 CNN-Plant disease detection system/
 │
 ├── backend/
+│   ├── __init__.py
+│   ├── class_names.json
+│   ├── finetuned_plant_disease_detection_model.keras
+│   ├── finetuned_model_train.py
 │   ├── main.py
 │   ├── predict.py
-│   ├── recomendations.py
-│   ├── class_names.json
-│   └── finetuned_plant_disease_detection_model.keras
+│   └── recomendations.py
+│
+├── dataset/
+│   ├── Pepper__bell___Bacterial_spot/
+│   ├── Pepper__bell___healthy/
+│   ├── Potato___Early_blight/
+│   ├── Potato___Late_blight/
+│   ├── Potato___healthy/
+│   ├── Tomato__Target_Spot/
+│   ├── Tomato__Tomato_mosaic_virus/
+│   ├── Tomato__Tomato_YellowLeaf__Curl_Virus/
+│   ├── Tomato_Bacterial_spot/
+│   ├── Tomato_Early_blight/
+│   ├── Tomato_healthy/
+│   ├── Tomato_Late_blight/
+│   ├── Tomato_Leaf_Mold/
+│   ├── Tomato_Septoria_leaf_spot/
+│   └── Tomato_Spider_mites_Two_spotted_spider_mite/
 │
 ├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   ├── static/
+│   │   ├── script.js
+│   │   └── style.css
+│   └── templates/
+│       └── index.html
 │
-├── accuracy_plot.png
-├── loss_plot.png
-├── sample_input.png
-├── sample_output.png
+├── images/
+│   ├── accuracy_plot.png
+│   ├── loss_plot.png
+│   ├── sample_input.png
+│   └── sample_output.png
+│
+├── plant_disease_detection_model.keras
+├── readme.md
 ├── requirements.txt
-└── README.md
+├── train.py
+└── .python-version
 ```
 
 ---
