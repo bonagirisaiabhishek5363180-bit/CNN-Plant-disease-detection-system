@@ -8,7 +8,7 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-# Training data generator
+
 train_datagen = ImageDataGenerator(
     rescale=1./255,
     validation_split=0.2,
@@ -31,7 +31,7 @@ train_data = train_datagen.flow_from_directory(
     subset='training'
 )
 
-# Validation dataset
+
 validation_data = val_datagen.flow_from_directory(
     "dataset",
     target_size=(224,224),
