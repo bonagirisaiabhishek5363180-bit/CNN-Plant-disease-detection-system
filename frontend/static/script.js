@@ -24,12 +24,21 @@ predictBtn.addEventListener("click", async function () {
     const formData = new FormData();
     formData.append("file", file);
 
-    try {
+    const backendOrigin = window.location.origin === "null" ? "http://127.0.0.1:8000" : window.location.origin;
+    const endpoint = `${backendOrigin}/`;
+    console.log("Sending request to backend:", endpoint);
 
-        const response = await fetch("https://cnn-plant-disease-detection-system-7.onrender.com/", {
+    try {
+        const response = await fetch(endpoint, {
             method: "POST",
-            body: formData
+            body: formData,
         });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            const message = errorData?.error || `Server error ${response.status}`;
+            throw new Error(message);
+        }
 
         const data = await response.json();
 
@@ -37,12 +46,11 @@ predictBtn.addEventListener("click", async function () {
 
         document.getElementById("disease").innerText = data.disease;
         document.getElementById("confidence").innerText = data.confidence + "%";
-        document.getElementById("cause").innerText = data.cause;
-        document.getElementById("treatment").innerText = data.treatment;
-        document.getElementById("prevention").innerText = data.prevention;
-
+        document.getElementById("cause").innerText = data.cause || "N/A";
+        document.getElementById("treatment").innerText = data.treatment || "N/A";
+        document.getElementById("prevention").innerText = data.prevention || "N/A";
     } catch (error) {
         console.error(error);
-        alert("Error connecting to backend.");
+        alert(`Error connecting to backend: ${error.message}`);
     }
 });

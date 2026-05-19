@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 *.h5
 dataset/
+plant_vs_nonplant_dataset/
