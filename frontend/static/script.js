@@ -24,7 +24,7 @@ predictBtn.addEventListener("click", async function () {
     const formData = new FormData();
     formData.append("file", file);
 
-    const backendOrigin = window.location.origin === "null" ? "http://127.0.0.1:8000" : window.location.origin;
+    const backendOrigin = window.location.origin === "null" ? "https://cnn-plant-disease-detection-system-8.onrender.com/" : window.location.origin;
     const endpoint = `${backendOrigin}/`;
     console.log("Sending request to backend:", endpoint);
 
